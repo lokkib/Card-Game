@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  background-color: #00008b;
+}
+
+.block-heading-difficulty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.block-choose-difficulty {
+  background: #C2F5FF;
+  border-radius: 12px;
+  width: 480px;
+  height: 459px;
+}
+
+.heading-choose-difficulty {
+  margin-top: 52px;
+  max-width: 208px;
+  max-height: 96px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  margin-bottom: 48px;
+  color: #004980;
+}
+
+.buttons-difficulty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-column-gap: 24px;
+          column-gap: 24px;
+  padding-bottom: 67px;
+}
+
+.buttons-difficulty button {
+  width: 98px;
+  height: 98px;
+  background-color: white;
+  border-radius: 12px;
+  color: #0080C1;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  border: none;
+  cursor: pointer;
+}
+
+.block-button-start {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.button-start {
+  width: 246px;
+  height: 50px;
+  background: #7AC100;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  cursor: pointer;
+  border: none;
+}
+/*# sourceMappingURL=styles.css.map */
