@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
     <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/game-status.js"></script>
 </head>
 <body>
     <section class="block-choose-difficulty">
@@ -13,13 +14,31 @@
             <h1 class="heading-choose-difficulty">Выбери сложность</h1>
         </div>
             <div class="buttons-difficulty">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
+                <button class="button-difficulty">1</button>
+                <button class="button-difficulty">2</button>
+                <button class="button-difficulty">3</button>
             </div>
             <div class="block-button-start">
                 <button class="button-start">Старт</button>
             </div>
     </section>
+    <script>
+        const game = {
+            renderGameScreen,
+            // renderGeneratedCards,
+            // renderChosenCards,
+            // renderTimeWasted
+        }
+
+        const ScreenChooseDifficulty = document.querySelector('.block-choose-difficulty');
+        const blockButtonsDifficulty = document.querySelector('.buttons-difficulty');
+        const buttonStart = document.querySelector('.button-start');
+
+        blockButtonsDifficulty.addEventListener('click', function(event){
+            localStorage.setItem(`button${event.target.textContent}`, `${event.target.textContent}`);
+        })
+
+        buttonStart.addEventListener('click', renderGameScreen);
+    </script>
 </body>
 </html>
