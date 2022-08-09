@@ -1,0 +1,38 @@
+{
+    "name": "game",
+    "version": "1.0.0",
+    "description": "Homework - card game",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write .",
+        "lint:js": "eslint ./scripts/*.js",
+        "stylelint:css,scss": "stylelint ./styles/*{.css,.scss}",
+        "stylelint:fix": "stylelint ./styles/*{.css,.scss} --fix",
+        "lint": "npm run lint:js && npm run stylelint:css,scss",
+        "prepare": "husky install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lokkib/Game.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/lokkib/Game/issues"
+    },
+    "homepage": "https://github.com/lokkib/Game#readme",
+    "devDependencies": {
+        "eslint": "^8.21.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.0",
+        "prettier": "^2.7.1",
+        "stylelint": "^14.9.1",
+        "stylelint-config-prettier": "^9.0.3",
+        "stylelint-config-standard": "^26.0.0",
+        "stylelint-config-standard-scss": "^5.0.0",
+        "stylelint-prettier": "^2.0.0"
+    },
+    "dependencies": {}
+}
