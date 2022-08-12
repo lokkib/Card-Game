@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-function renderTimeGame() {
+export default function renderTimeGame() {
     const minutes = document.querySelector('.timer-minutes');
     const seconds = document.querySelector('.timer-seconds');
     let numberMinutesFormat = +minutes.textContent;

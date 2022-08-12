@@ -1,10 +1,6 @@
-/*global templateEngine*/
-// /*eslint no-undef: "error"*/
+import templateEngine from './templateEngine';
 
-// // eslint-disable-next-line no-unused-vars//
-
-// eslint-disable-next-line no-unused-vars
-function renderCards(level) {
+export default function renderCards(level) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
     const values = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
@@ -20,7 +16,7 @@ function renderCards(level) {
                     tag: 'img',
                     cls: ['card-shirt'],
                     attrs: {
-                        src: './images/card_face_down.png',
+                        src: './static/card_face_down.png',
                     },
                 },
                 {
