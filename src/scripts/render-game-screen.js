@@ -1,8 +1,8 @@
-/*global renderCards, renderTimeGame*/
-/*eslint no-undef: "error"*/
+import renderCards from './render-cards';
+import renderTimeGame from './render-time-game';
+import renderChosenCards from './render-chosen-cards';
 
-// eslint-disable-next-line no-unused-vars
-function renderGameScreen() {
+export default function renderGameScreen() {
     document.body.firstElementChild.remove();
     renderCards(localStorage.getItem('level'));
 
@@ -35,4 +35,6 @@ function renderGameScreen() {
     const blockWithTimer = document.querySelector('.game-timer-button-hidden');
     blockWithTimer.classList.remove('game-timer-button-hidden');
     blockWithTimer.classList.add('game-timer-button');
+
+    renderChosenCards();
 }
