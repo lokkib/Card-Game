@@ -12,7 +12,7 @@
         "lint": "npm run lint:js && npm run stylelint:css,scss",
         "prepare": "husky install",
         "build": "webpack",
-        "start": "webpack -dev-server --open"
+        "start": "webpack-dev-server --open"
     },
     "repository": {
         "type": "git",
@@ -34,7 +34,10 @@
         "html-webpack-plugin": "^5.5.0",
         "husky": "^8.0.0",
         "mini-css-extract-plugin": "^2.6.1",
+        "node-sass": "^7.0.1",
         "prettier": "^2.7.1",
+        "sass": "^1.54.4",
+        "sass-loader": "^13.0.2",
         "style-loader": "^3.3.1",
         "stylelint": "^14.9.1",
         "stylelint-config-prettier": "^9.0.3",

@@ -3,10 +3,9 @@ import renderCards from './render-cards';
 import renderTimeGame from './render-time-game';
 import renderChosenCards from './render-chosen-cards';
 
-import '../styles/styles.css';
+import '../styles/styles.scss';
 
-// eslint-disable-next-line no-unused-vars
-const Game = {
+export const Game = {
     rememberLevel,
     renderGameScreen,
     renderChosenCards,
