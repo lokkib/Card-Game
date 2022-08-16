@@ -1,11 +1,33 @@
 import templateEngine from './templateEngine';
 
-export default function renderCards(level) {
+export default function renderCards(level: string | null) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
     const values = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
 
-    const blockWithCards = document.querySelector('.block-with-cards');
+    let blockWithCards: HTMLElement | null;
+
+    function findBlockWithCards(element: Element | null) {
+        while (element) {
+            if (element.classList.contains('block-with-cards')) {
+                blockWithCards = document.querySelector('.block-with-cards');
+            }
+            if (element.classList.contains('block-with-cards-hidden')) {
+                blockWithCards = document.querySelector(
+                    '.block-with-cards-hidden'
+                );
+                if (blockWithCards !== null) {
+                    blockWithCards.innerHTML = '';
+                    blockWithCards.classList.remove('block-with-cards-hidden');
+                    blockWithCards.classList.add('block-with-cards');
+                }
+            }
+            findBlockWithCards(element.firstElementChild);
+            element = element.nextElementSibling;
+        }
+    }
+
+    findBlockWithCards(document.body);
 
     function creatingCard(card) {
         return {
@@ -54,7 +76,7 @@ export default function renderCards(level) {
         };
     }
 
-    function getRandomSuit(arr) {
+    function getRandomSuit(arr: string[]) {
         const newSuits = [];
 
         for (let i = 0; i < 3; i++) {
@@ -74,8 +96,8 @@ export default function renderCards(level) {
     }
 
     function renderLevel() {
-        const newValues = [];
-        function getRandomValue(arr) {
+        const newValues: string[] = [];
+        function getRandomValue(arr: string[]) {
             if (level === '1') {
                 for (let i = 0; i < 4; i++) {
                     newValues.push(arr[Math.floor(Math.random() * arr.length)]);
@@ -112,9 +134,13 @@ export default function renderCards(level) {
             }
         }
 
-        const futureListOfCards = [];
+        const futureListOfCards = {};
 
-        function renderRelevantNumberCards(arr1, arr2, object) {
+        function renderRelevantNumberCards(
+            arr1: string[],
+            arr2: string[],
+            object: object
+        ) {
             let i = 0;
             for (let elem of arr1) {
                 for (let el of arr2) {
@@ -136,15 +162,16 @@ export default function renderCards(level) {
         const listOfCards = Object.values(futureListOfCards).sort(
             () => Math.random() - 0.5
         );
-
-        blockWithCards.appendChild(
-            templateEngine(listOfCards.map((el) => creatingCard(el)))
-        );
+        if (blockWithCards !== null) {
+            blockWithCards.appendChild(
+                templateEngine(listOfCards.map((el) => creatingCard(el)))
+            );
+        }
     }
 
     renderLevel();
 
-    function changeColor(node) {
+    function changeColor(node: HTMLElement | null) {
         while (node) {
             if (
                 node.textContent === '\u2666' ||
@@ -152,10 +179,15 @@ export default function renderCards(level) {
             ) {
                 node.style.color = 'red';
             }
-            changeColor(node.firstElementChild);
+            let child: HTMLElement | null =
+                node.firstElementChild as HTMLElement;
+            changeColor(child);
 
-            node = node.nextElementSibling;
+            node = node.nextElementSibling as HTMLElement;
         }
     }
-    changeColor(blockWithCards);
+
+    if (blockWithCards !== null) {
+        changeColor(blockWithCards);
+    }
 }
