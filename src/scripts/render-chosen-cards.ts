@@ -118,7 +118,9 @@ export default function renderChosenCards() {
                 const buttonStartNewGame: HTMLElement | null =
                     document.querySelector('.block-final-screen_button');
                 if (buttonStartNewGame !== null) {
-                    buttonStartNewGame.addEventListener('click', backToStart);
+                    buttonStartNewGame.addEventListener('click', () =>
+                        backToStart()
+                    );
                 }
             }
 

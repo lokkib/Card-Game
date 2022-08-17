@@ -9,10 +9,16 @@ export let buttonStartAgain: HTMLElement | null;
 
 export let backToStart: Function;
 
+const blockChooseDifficulty: HTMLElement | null = document.querySelector(
+    '.block-choose-difficulty'
+);
+
+blockWithTimer = document.querySelector('.game-timer-button-hidden');
+const blockWithCards = document.querySelector('.block-with-cards');
+
+buttonStartAgain = document.querySelector('.button-start-again');
+
 export default function renderGameScreen() {
-    const blockChooseDifficulty: HTMLElement | null = document.querySelector(
-        '.block-choose-difficulty'
-    );
     if (blockChooseDifficulty !== null) {
         blockChooseDifficulty.classList.add('block-choose-difficulty-hidden');
     }
@@ -22,9 +28,6 @@ export default function renderGameScreen() {
     const cardShirts = document.querySelectorAll('.card-shirt');
     const cardFaces = document.querySelectorAll('.card-face-hidden');
 
-    const blockWithCards = document.querySelector('.block-with-cards');
-
-    buttonStartAgain = document.querySelector('.button-start-again');
     if (buttonStartAgain !== null) {
         buttonStartAgain.setAttribute('disabled', 'disabled');
     }
@@ -56,14 +59,15 @@ export default function renderGameScreen() {
         renderTimeGame();
     }, 5000);
 
-    blockWithTimer = document.querySelector('.game-timer-button-hidden');
-
     if (blockWithTimer !== null) {
         blockWithTimer.classList.remove('game-timer-button-hidden');
         blockWithTimer.classList.add('game-timer-button');
     }
 
     renderChosenCards();
+}
+
+const startNewGame = () => {
     if (buttonStartAgain !== null) {
         buttonStartAgain.addEventListener(
             'click',
@@ -115,4 +119,5 @@ export default function renderGameScreen() {
             })
         );
     }
-}
+};
+startNewGame();

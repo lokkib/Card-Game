@@ -1,35 +1,79 @@
 import templateEngine from './templateEngine';
 
+interface cardStructure {
+        tag?: string;
+        cls: string;
+        attrs: object;
+        content?: [
+            {
+                tag: string;
+                cls: string[];
+                attrs: {
+                    src: string;
+                };
+            },
+            {
+                tag: string;
+                cls: string[];
+                content: [
+                    {
+                        tag: string;
+                        cls: string;
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string;
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string;
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string[];
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string[];
+                        content: string;
+                    }
+                ];
+            }
+        ];
+    }
+
 export default function renderCards(level: string | null) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
-    const values = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
+    const values: (string | number)[] = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
 
-    let blockWithCards: HTMLElement | null;
+    let blockWithCards: HTMLElement | null = document.querySelector(
+        '.block-with-cards-main'
+    );
 
-    function findBlockWithCards(element: Element | null) {
-        while (element) {
-            if (element.classList.contains('block-with-cards')) {
-                blockWithCards = document.querySelector('.block-with-cards');
-            }
-            if (element.classList.contains('block-with-cards-hidden')) {
-                blockWithCards = document.querySelector(
-                    '.block-with-cards-hidden'
-                );
-                if (blockWithCards !== null) {
-                    blockWithCards.innerHTML = '';
-                    blockWithCards.classList.remove('block-with-cards-hidden');
-                    blockWithCards.classList.add('block-with-cards');
-                }
-            }
-            findBlockWithCards(element.firstElementChild);
-            element = element.nextElementSibling;
+    if (blockWithCards !== null) {
+        if (blockWithCards.classList.contains('block-with-cards')) {
+            blockWithCards = document.querySelector('.block-with-cards');
+        }
+    }
+    if (blockWithCards !== null) {
+        if (blockWithCards.classList.contains('block-with-cards-hidden')) {
+            blockWithCards = document.querySelector('.block-with-cards-hidden');
+        }
+        if (blockWithCards !== null) {
+            blockWithCards.innerHTML = '';
+            blockWithCards.classList.remove('block-with-cards-hidden');
+            blockWithCards.classList.add('block-with-cards');
         }
     }
 
-    findBlockWithCards(document.body);
+    
 
-    function creatingCard(card) {
+    function creatingCard(card: Record<'suit' | 'value', string | number>) {
         return {
             tag: 'div',
             cls: 'card',
@@ -76,7 +120,7 @@ export default function renderCards(level: string | null) {
         };
     }
 
-    function getRandomSuit(arr: string[]) {
+    function getRandomSuit(arr: string[]): string[] {
         const newSuits = [];
 
         for (let i = 0; i < 3; i++) {
@@ -93,11 +137,12 @@ export default function renderCards(level: string | null) {
         } else {
             return finalArr3;
         }
+        return finalArr3;
     }
 
     function renderLevel() {
-        const newValues: string[] = [];
-        function getRandomValue(arr: string[]) {
+        const newValues: (string | number)[] = [];
+        function getRandomValue(arr: (string | number)[]) {
             if (level === '1') {
                 for (let i = 0; i < 4; i++) {
                     newValues.push(arr[Math.floor(Math.random() * arr.length)]);
@@ -134,56 +179,54 @@ export default function renderCards(level: string | null) {
             }
         }
 
-        const futureListOfCards = {};
+        let listOfCards: Record<'suit' | 'value', string | number>[] = [];
 
         function renderRelevantNumberCards(
             arr1: string[],
-            arr2: string[],
-            object: object
+            arr2: (string | number)[],
+            object: Record<'suit' | 'value', string | number>[]
         ) {
-            let i = 0;
             for (let elem of arr1) {
                 for (let el of arr2) {
-                    i++;
-                    object[`card${i}`] = {
+                    object.push({
                         suit: elem,
                         value: el,
-                    };
+                    });
                 }
             }
+            console.log(object);
             return object;
         }
 
         renderRelevantNumberCards(
             getRandomSuit(suits),
             getRandomValue(values),
-            futureListOfCards
+            listOfCards
         );
-        const listOfCards = Object.values(futureListOfCards).sort(
-            () => Math.random() - 0.5
-        );
+        listOfCards = listOfCards.sort(() => Math.random() - 0.5);
         if (blockWithCards !== null) {
             blockWithCards.appendChild(
-                templateEngine(listOfCards.map((el) => creatingCard(el)))
+                templateEngine(
+                    listOfCards.map((el) => creatingCard(el))
+                )
             );
         }
     }
 
     renderLevel();
 
-    function changeColor(node: HTMLElement | null) {
+    function changeColor(node: Element | null) {
         while (node) {
             if (
                 node.textContent === '\u2666' ||
                 node.textContent === '\u2665'
             ) {
-                node.style.color = 'red';
+                node.setAttribute('style', 'color: red');
             }
-            let child: HTMLElement | null =
-                node.firstElementChild as HTMLElement;
+            let child: Element | null = node.firstElementChild;
             changeColor(child);
 
-            node = node.nextElementSibling as HTMLElement;
+            node = node.nextElementSibling;
         }
     }
 

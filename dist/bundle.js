@@ -29,25 +29,22 @@ __webpack_require__.r(__webpack_exports__);
 function renderCards(level) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
     const values = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
-    let blockWithCards;
-    function findBlockWithCards(element) {
-        while (element) {
-            if (element.classList.contains('block-with-cards')) {
-                blockWithCards = document.querySelector('.block-with-cards');
-            }
-            if (element.classList.contains('block-with-cards-hidden')) {
-                blockWithCards = document.querySelector('.block-with-cards-hidden');
-                if (blockWithCards !== null) {
-                    blockWithCards.innerHTML = '';
-                    blockWithCards.classList.remove('block-with-cards-hidden');
-                    blockWithCards.classList.add('block-with-cards');
-                }
-            }
-            findBlockWithCards(element.firstElementChild);
-            element = element.nextElementSibling;
+    let blockWithCards = document.querySelector('.block-with-cards-main');
+    if (blockWithCards !== null) {
+        if (blockWithCards.classList.contains('block-with-cards')) {
+            blockWithCards = document.querySelector('.block-with-cards');
         }
     }
-    findBlockWithCards(document.body);
+    if (blockWithCards !== null) {
+        if (blockWithCards.classList.contains('block-with-cards-hidden')) {
+            blockWithCards = document.querySelector('.block-with-cards-hidden');
+        }
+        if (blockWithCards !== null) {
+            blockWithCards.innerHTML = '';
+            blockWithCards.classList.remove('block-with-cards-hidden');
+            blockWithCards.classList.add('block-with-cards');
+        }
+    }
     function creatingCard(card) {
         return {
             tag: 'div',
@@ -111,6 +108,7 @@ function renderCards(level) {
         else {
             return finalArr3;
         }
+        return finalArr3;
     }
     function renderLevel() {
         const newValues = [];
@@ -152,22 +150,21 @@ function renderCards(level) {
                 return arr;
             }
         }
-        const futureListOfCards = {};
+        let listOfCards = [];
         function renderRelevantNumberCards(arr1, arr2, object) {
-            let i = 0;
             for (let elem of arr1) {
                 for (let el of arr2) {
-                    i++;
-                    object[`card${i}`] = {
+                    object.push({
                         suit: elem,
                         value: el,
-                    };
+                    });
                 }
             }
+            console.log(object);
             return object;
         }
-        renderRelevantNumberCards(getRandomSuit(suits), getRandomValue(values), futureListOfCards);
-        const listOfCards = Object.values(futureListOfCards).sort(() => Math.random() - 0.5);
+        renderRelevantNumberCards(getRandomSuit(suits), getRandomValue(values), listOfCards);
+        listOfCards = listOfCards.sort(() => Math.random() - 0.5);
         if (blockWithCards !== null) {
             blockWithCards.appendChild((0,_templateEngine__WEBPACK_IMPORTED_MODULE_0__["default"])(listOfCards.map((el) => creatingCard(el))));
         }
@@ -177,7 +174,7 @@ function renderCards(level) {
         while (node) {
             if (node.textContent === '\u2666' ||
                 node.textContent === '\u2665') {
-                node.style.color = 'red';
+                node.setAttribute('style', 'color: red');
             }
             let child = node.firstElementChild;
             changeColor(child);
@@ -295,7 +292,7 @@ function renderChosenCards() {
                 }
                 const buttonStartNewGame = document.querySelector('.block-final-screen_button');
                 if (buttonStartNewGame !== null) {
-                    buttonStartNewGame.addEventListener('click', _render_game_screen__WEBPACK_IMPORTED_MODULE_0__.backToStart);
+                    buttonStartNewGame.addEventListener('click', () => (0,_render_game_screen__WEBPACK_IMPORTED_MODULE_0__.backToStart)());
                 }
             }
             let i = 0;
@@ -351,16 +348,17 @@ __webpack_require__.r(__webpack_exports__);
 let blockWithTimer;
 let buttonStartAgain;
 let backToStart;
+const blockChooseDifficulty = document.querySelector('.block-choose-difficulty');
+blockWithTimer = document.querySelector('.game-timer-button-hidden');
+const blockWithCards = document.querySelector('.block-with-cards');
+buttonStartAgain = document.querySelector('.button-start-again');
 function renderGameScreen() {
-    const blockChooseDifficulty = document.querySelector('.block-choose-difficulty');
     if (blockChooseDifficulty !== null) {
         blockChooseDifficulty.classList.add('block-choose-difficulty-hidden');
     }
     (0,_render_cards__WEBPACK_IMPORTED_MODULE_0__["default"])(localStorage.getItem('level'));
     const cardShirts = document.querySelectorAll('.card-shirt');
     const cardFaces = document.querySelectorAll('.card-face-hidden');
-    const blockWithCards = document.querySelector('.block-with-cards');
-    buttonStartAgain = document.querySelector('.button-start-again');
     if (buttonStartAgain !== null) {
         buttonStartAgain.setAttribute('disabled', 'disabled');
     }
@@ -388,12 +386,13 @@ function renderGameScreen() {
         }
         (0,_render_time_game__WEBPACK_IMPORTED_MODULE_1__["default"])();
     }, 5000);
-    blockWithTimer = document.querySelector('.game-timer-button-hidden');
     if (blockWithTimer !== null) {
         blockWithTimer.classList.remove('game-timer-button-hidden');
         blockWithTimer.classList.add('game-timer-button');
     }
     (0,_render_chosen_cards__WEBPACK_IMPORTED_MODULE_2__["default"])();
+}
+const startNewGame = () => {
     if (buttonStartAgain !== null) {
         buttonStartAgain.addEventListener('click', (backToStart = () => {
             if (blockChooseDifficulty !== null) {
@@ -428,7 +427,8 @@ function renderGameScreen() {
             clearInterval(_render_time_game__WEBPACK_IMPORTED_MODULE_1__.timer);
         }));
     }
-}
+};
+startNewGame();
 
 
 /***/ }),

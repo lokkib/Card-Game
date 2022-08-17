@@ -4,7 +4,6 @@ export const seconds: HTMLElement | null =
     document.querySelector('.timer-seconds');
 export let timer: any;
 
-
 export default function renderTimeGame() {
     if (!(minutes instanceof HTMLElement)) {
         return;
