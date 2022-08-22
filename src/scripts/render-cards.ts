@@ -1,13 +1,79 @@
 import templateEngine from './templateEngine';
 
-export default function renderCards(level) {
+interface cardStructure {
+        tag?: string;
+        cls: string;
+        attrs: object;
+        content?: [
+            {
+                tag: string;
+                cls: string[];
+                attrs: {
+                    src: string;
+                };
+            },
+            {
+                tag: string;
+                cls: string[];
+                content: [
+                    {
+                        tag: string;
+                        cls: string;
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string;
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string;
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string[];
+                        content: string;
+                    },
+                    {
+                        tag: string;
+                        cls: string[];
+                        content: string;
+                    }
+                ];
+            }
+        ];
+    }
+
+export default function renderCards(level: string | null) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
-    const values = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
+    const values: (string | number)[] = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
 
-    const blockWithCards = document.querySelector('.block-with-cards');
+    let blockWithCards: HTMLElement | null = document.querySelector(
+        '.block-with-cards-main'
+    );
 
-    function creatingCard(card) {
+    if (blockWithCards !== null) {
+        if (blockWithCards.classList.contains('block-with-cards')) {
+            blockWithCards = document.querySelector('.block-with-cards');
+        }
+    }
+    if (blockWithCards !== null) {
+        if (blockWithCards.classList.contains('block-with-cards-hidden')) {
+            blockWithCards = document.querySelector('.block-with-cards-hidden');
+        }
+        if (blockWithCards !== null) {
+            blockWithCards.innerHTML = '';
+            blockWithCards.classList.remove('block-with-cards-hidden');
+            blockWithCards.classList.add('block-with-cards');
+        }
+    }
+
+    
+
+    function creatingCard(card: Record<'suit' | 'value', string | number>) {
         return {
             tag: 'div',
             cls: 'card',
@@ -54,7 +120,7 @@ export default function renderCards(level) {
         };
     }
 
-    function getRandomSuit(arr) {
+    function getRandomSuit(arr: string[]): string[] {
         const newSuits = [];
 
         for (let i = 0; i < 3; i++) {
@@ -71,11 +137,12 @@ export default function renderCards(level) {
         } else {
             return finalArr3;
         }
+        return finalArr3;
     }
 
     function renderLevel() {
-        const newValues = [];
-        function getRandomValue(arr) {
+        const newValues: (string | number)[] = [];
+        function getRandomValue(arr: (string | number)[]) {
             if (level === '1') {
                 for (let i = 0; i < 4; i++) {
                     newValues.push(arr[Math.floor(Math.random() * arr.length)]);
@@ -112,50 +179,58 @@ export default function renderCards(level) {
             }
         }
 
-        const futureListOfCards = [];
+        let listOfCards: Record<'suit' | 'value', string | number>[] = [];
 
-        function renderRelevantNumberCards(arr1, arr2, object) {
-            let i = 0;
+        function renderRelevantNumberCards(
+            arr1: string[],
+            arr2: (string | number)[],
+            object: Record<'suit' | 'value', string | number>[]
+        ) {
             for (let elem of arr1) {
                 for (let el of arr2) {
-                    i++;
-                    object[`card${i}`] = {
+                    object.push({
                         suit: elem,
                         value: el,
-                    };
+                    });
                 }
             }
+            console.log(object);
             return object;
         }
 
         renderRelevantNumberCards(
             getRandomSuit(suits),
             getRandomValue(values),
-            futureListOfCards
+            listOfCards
         );
-        const listOfCards = Object.values(futureListOfCards).sort(
-            () => Math.random() - 0.5
-        );
-
-        blockWithCards.appendChild(
-            templateEngine(listOfCards.map((el) => creatingCard(el)))
-        );
+        listOfCards = listOfCards.sort(() => Math.random() - 0.5);
+        if (blockWithCards !== null) {
+            blockWithCards.appendChild(
+                templateEngine(
+                    listOfCards.map((el) => creatingCard(el))
+                )
+            );
+        }
     }
 
     renderLevel();
 
-    function changeColor(node) {
+    function changeColor(node: Element | null) {
         while (node) {
             if (
                 node.textContent === '\u2666' ||
                 node.textContent === '\u2665'
             ) {
-                node.style.color = 'red';
+                node.setAttribute('style', 'color: red');
             }
-            changeColor(node.firstElementChild);
+            let child: Element | null = node.firstElementChild;
+            changeColor(child);
 
             node = node.nextElementSibling;
         }
     }
-    changeColor(blockWithCards);
+
+    if (blockWithCards !== null) {
+        changeColor(blockWithCards);
+    }
 }

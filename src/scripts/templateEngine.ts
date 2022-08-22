@@ -1,4 +1,6 @@
-export default function templateEngine(block) {
+import { cardStructure } from './render-cards';
+
+export default function templateEngine(block: cardStructure) {
     if (block === undefined || block === null || block === false) {
         return document.createTextNode('');
     }
