@@ -1,6 +1,4 @@
-import { cardStructure } from './render-cards';
-
-export default function templateEngine(block: cardStructure) {
+export default function templateEngine(block: unknown) {
     if (block === undefined || block === null || block === false) {
         return document.createTextNode('');
     }
@@ -23,22 +21,26 @@ export default function templateEngine(block: cardStructure) {
         return fragment;
     }
 
-    const result = document.createElement(block.tag);
+    type blockObject = Record<'tag' | 'content' | 'cls' | 'attrs', string>;
+    const result = document.createElement((block as blockObject).tag);
 
-    result.appendChild(templateEngine(block.content));
+    result.appendChild(templateEngine((block as blockObject).content));
 
-    if (block.cls) {
-        const classes = [].concat(block.cls);
+    if ((block as blockObject).cls) {
+        const classes = [].concat((block as blockObject).cls);
         classes.forEach((cls) => {
             result.classList.add(cls);
         });
     }
 
-    if (block.attrs) {
-        const keys = Object.keys(block.attrs);
+    if ((block as blockObject).attrs) {
+        const keys = Object.keys((block as blockObject).attrs);
 
         keys.forEach((key) => {
-            result.setAttribute(key, block.attrs[key]);
+            result.setAttribute(
+                key,
+                (block as blockObject).attrs[key as unknown as number]
+            );
         });
     }
 
