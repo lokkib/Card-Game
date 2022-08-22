@@ -1,0 +1,330 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #00008b;
+}
+
+.block-heading-difficulty {
+    display: flex;
+    justify-content: center;
+}
+
+.block-choose-difficulty {
+    background: #c2f5ff;
+    border-radius: 12px;
+    width: 480px;
+    height: 459px;
+}
+
+.block-choose-difficulty-hidden {
+    display: none;
+}
+
+.heading-choose-difficulty {
+    margin-top: 52px;
+    max-width: 208px;
+    max-height: 96px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    margin-bottom: 48px;
+    color: #004980;
+}
+
+.buttons-difficulty {
+    display: flex;
+    justify-content: center;
+    column-gap: 24px;
+    padding-bottom: 67px;
+}
+
+.buttons-difficulty button {
+    width: 98px;
+    height: 98px;
+    background-color: white;
+    border-radius: 12px;
+    color: #0080c1;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    border: none;
+    cursor: pointer;
+}
+
+.block-button-start {
+    display: flex;
+    justify-content: center;
+}
+
+.block-with-cards-hidden {
+    display: none;
+}
+
+.button-start {
+    width: 246px;
+    height: 50px;
+    background: #7ac100;
+    border-radius: 12px;
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    cursor: pointer;
+    border: none;
+}
+
+.game {
+    width: 100vw;
+    height: 100vh;
+}
+
+.game__time-start {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 52px;
+    margin-bottom: 46px;
+}
+
+.game__start {
+    margin-right: 22px;
+    width: 246px;
+    height: 50px;
+    color: #fff;
+    background: #7ac100;
+    border-radius: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    border: transparent;
+}
+
+.game__cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 15px;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.block-with-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 670px;
+}
+
+.card {
+    position: relative;
+    width: 95px;
+    height: 133px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.card-shirt-hidden {
+    display: none;
+}
+
+.card-face-hidden {
+    display: none;
+}
+
+.card-face {
+    display: block;
+}
+
+.card-face-value {
+    position: absolute;
+    left: 6px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000;
+}
+
+.card-face-suit {
+    position: absolute;
+    left: 8px;
+    top: 29px;
+    width: 6.97px;
+    height: 6px;
+    font-size: 15px;
+}
+
+.card-face-centered-suit {
+    position: absolute;
+    font-size: 40px;
+    top: 50%;
+    left: 50%;
+    margin-top: -26px;
+    margin-left: -11px;
+}
+
+.upside-down-value {
+    position: absolute;
+    top: 103px;
+    left: 70px;
+    transform: rotateX(180deg);
+}
+
+.upside-down-suit {
+    position: absolute;
+    top: 102px;
+    left: 75px;
+    transform: rotateX(180deg);
+}
+
+.game-timer-button {
+    display: flex;
+    column-gap: 320px;
+    margin-bottom: 35px;
+    align-items: center;
+}
+
+.game-timer-button-hidden {
+    display: none;
+}
+
+.button-start-again {
+    background: #7ac100;
+    border-radius: 12px;
+    border: none;
+    width: 246px;
+    height: 50px;
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+}
+
+.timer-minutes-seconds {
+    display: flex;
+}
+
+.timer-minutes {
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+}
+
+.timer-minutes::after {
+    content: '.';
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+}
+
+.timer-seconds {
+    color: #fff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+}
+
+.timer-min-sek {
+    display: flex;
+    column-gap: 57px;
+}
+
+.timer-min {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    color: #fff;
+}
+
+.timer-sek {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    color: #fff;
+}
+
+.block-final-screen {
+    position: absolute;
+    z-index: index 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 480px;
+    height: 459px;
+    background: #c2f5ff;
+    border-radius: 12px;
+}
+
+.block-final-screen-hidden {
+    display: none;
+}
+
+.block-final-screen__icon {
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
+.block-final-screen__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.block-final-screen__heading {
+    padding-bottom: 28px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    color: #004980;
+}
+
+.block-final-screen__time {
+    padding-bottom: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000;
+}
+
+.block-final-screen__time-content {
+    padding-bottom: 40px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    color: #000;
+}
