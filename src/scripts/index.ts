@@ -13,6 +13,7 @@ export const Game = {
     renderCards,
 };
 
+
 const blockButtonsDifficulty: HTMLElement | null = document.querySelector(
     '.buttons-difficulty'
 );
