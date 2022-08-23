@@ -7,7 +7,9 @@ import { timer } from './render-time-game';
 export let blockWithTimer: HTMLElement | null;
 export let buttonStartAgain: HTMLElement | null;
 
-export let backToStart: Function;
+export let backToStart: backToStart;
+
+type backToStart = () => void;
 
 const blockChooseDifficulty: HTMLElement | null = document.querySelector(
     '.block-choose-difficulty'
@@ -33,22 +35,22 @@ export default function renderGameScreen() {
     }
 
     setTimeout(() => {
-        for (let elem of cardShirts) {
+        for (const elem of cardShirts) {
             elem.classList.remove('card-shirt');
             elem.classList.add('card-shirt-hidden');
         }
-        for (let elem of cardFaces) {
+        for (const elem of cardFaces) {
             elem.classList.remove('card-face-hidden');
             elem.classList.add('card-face');
         }
     }, 1000);
 
     setTimeout(() => {
-        for (let elem of cardShirts) {
+        for (const elem of cardShirts) {
             elem.classList.remove('card-shirt-hidden');
             elem.classList.add('card-shirt');
         }
-        for (let elem of cardFaces) {
+        for (const elem of cardFaces) {
             elem.classList.remove('card-face');
             elem.classList.add('card-face-hidden');
         }

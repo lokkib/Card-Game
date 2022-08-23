@@ -26,6 +26,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _templateEngine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./templateEngine */ "./src/scripts/templateEngine.ts");
 
+function creatingCard(card) {
+    return {
+        tag: 'div',
+        cls: 'card',
+        content: [
+            {
+                tag: 'img',
+                cls: ['card-shirt'],
+                attrs: {
+                    src: './static/card_face_down.png',
+                },
+            },
+            {
+                tag: 'div',
+                cls: ['card-face-hidden'],
+                content: [
+                    {
+                        tag: 'div',
+                        cls: 'card-face-value',
+                        content: `${card.value}`,
+                    },
+                    {
+                        tag: 'div',
+                        cls: 'card-face-suit',
+                        content: `${card.suit}`,
+                    },
+                    {
+                        tag: 'p',
+                        cls: 'card-face-centered-suit',
+                        content: `${card.suit}`,
+                    },
+                    {
+                        tag: 'div',
+                        cls: ['card-face-value', 'upside-down-value'],
+                        content: `${card.value}`,
+                    },
+                    {
+                        tag: 'div',
+                        cls: ['card-face-suit', 'upside-down-suit'],
+                        content: `${card.suit}`,
+                    },
+                ],
+            },
+        ],
+    };
+}
 function renderCards(level) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
     const values = [6, 7, 8, 9, 10, 'Q', 'K', 'J', 'A'];
@@ -44,52 +90,6 @@ function renderCards(level) {
             blockWithCards.classList.remove('block-with-cards-hidden');
             blockWithCards.classList.add('block-with-cards');
         }
-    }
-    function creatingCard(card) {
-        return {
-            tag: 'div',
-            cls: 'card',
-            content: [
-                {
-                    tag: 'img',
-                    cls: ['card-shirt'],
-                    attrs: {
-                        src: './static/card_face_down.png',
-                    },
-                },
-                {
-                    tag: 'div',
-                    cls: ['card-face-hidden'],
-                    content: [
-                        {
-                            tag: 'div',
-                            cls: 'card-face-value',
-                            content: `${card.value}`,
-                        },
-                        {
-                            tag: 'div',
-                            cls: 'card-face-suit',
-                            content: `${card.suit}`,
-                        },
-                        {
-                            tag: 'p',
-                            cls: 'card-face-centered-suit',
-                            content: `${card.suit}`,
-                        },
-                        {
-                            tag: 'div',
-                            cls: ['card-face-value', 'upside-down-value'],
-                            content: `${card.value}`,
-                        },
-                        {
-                            tag: 'div',
-                            cls: ['card-face-suit', 'upside-down-suit'],
-                            content: `${card.suit}`,
-                        },
-                    ],
-                },
-            ],
-        };
     }
     function getRandomSuit(arr) {
         const newSuits = [];
@@ -118,7 +118,7 @@ function renderCards(level) {
                     newValues.push(arr[Math.floor(Math.random() * arr.length)]);
                 }
                 const set = new Set(newValues);
-                let finalArr2 = [...set];
+                const finalArr2 = [...set];
                 if (finalArr2.length === 4) {
                     finalArr2.pop();
                     return finalArr2;
@@ -152,15 +152,14 @@ function renderCards(level) {
         }
         let listOfCards = [];
         function renderRelevantNumberCards(arr1, arr2, object) {
-            for (let elem of arr1) {
-                for (let el of arr2) {
+            for (const elem of arr1) {
+                for (const el of arr2) {
                     object.push({
                         suit: elem,
                         value: el,
                     });
                 }
             }
-            console.log(object);
             return object;
         }
         renderRelevantNumberCards(getRandomSuit(suits), getRandomValue(values), listOfCards);
@@ -176,7 +175,7 @@ function renderCards(level) {
                 node.textContent === '\u2665') {
                 node.setAttribute('style', 'color: red');
             }
-            let child = node.firstElementChild;
+            const child = node.firstElementChild;
             changeColor(child);
             node = node.nextElementSibling;
         }
@@ -245,7 +244,7 @@ function renderChosenCards() {
                 let elem;
                 for (elem of allCards) {
                     if (elem !== null) {
-                        let child = elem.lastElementChild;
+                        const child = elem.lastElementChild;
                         if (child !== null) {
                             if (!child.classList.contains('clicked')) {
                                 contains = false;
@@ -363,21 +362,21 @@ function renderGameScreen() {
         buttonStartAgain.setAttribute('disabled', 'disabled');
     }
     setTimeout(() => {
-        for (let elem of cardShirts) {
+        for (const elem of cardShirts) {
             elem.classList.remove('card-shirt');
             elem.classList.add('card-shirt-hidden');
         }
-        for (let elem of cardFaces) {
+        for (const elem of cardFaces) {
             elem.classList.remove('card-face-hidden');
             elem.classList.add('card-face');
         }
     }, 1000);
     setTimeout(() => {
-        for (let elem of cardShirts) {
+        for (const elem of cardShirts) {
             elem.classList.remove('card-shirt-hidden');
             elem.classList.add('card-shirt');
         }
-        for (let elem of cardFaces) {
+        for (const elem of cardFaces) {
             elem.classList.remove('card-face');
             elem.classList.add('card-face-hidden');
         }
@@ -460,10 +459,6 @@ function renderTimeGame() {
     let count = 0;
     function counting() {
         count++;
-        if (seconds !== null) {
-            let value = Number(seconds.textContent);
-            value = count;
-        }
         if (seconds !== null) {
             seconds.textContent = String(count);
         }

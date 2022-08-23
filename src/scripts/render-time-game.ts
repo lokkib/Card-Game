@@ -2,7 +2,7 @@ export const minutes: HTMLElement | null =
     document.querySelector('.timer-minutes');
 export const seconds: HTMLElement | null =
     document.querySelector('.timer-seconds');
-export let timer: any;
+export let timer: ReturnType<typeof setInterval>;
 
 export default function renderTimeGame() {
     if (!(minutes instanceof HTMLElement)) {
@@ -16,10 +16,7 @@ export default function renderTimeGame() {
 
     function counting() {
         count++;
-        if (seconds !== null) {
-            let value: number = Number(seconds.textContent);
-            value = count;
-        }
+
         if (seconds !== null) {
             seconds.textContent = String(count);
         }
@@ -41,3 +38,4 @@ export default function renderTimeGame() {
 
     timer = setInterval(counting, 1000);
 }
+
