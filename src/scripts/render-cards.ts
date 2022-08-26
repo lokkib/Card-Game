@@ -1,50 +1,53 @@
 import templateEngine from './templateEngine';
 
-interface cardStructure {
-        tag?: string;
-        cls: string;
-        attrs: object;
-        content?: [
+export type crCard = ReturnType<typeof creatingCard>;
+
+function creatingCard(card: Record<'suit' | 'value', string | number>) {
+    return {
+        tag: 'div',
+        cls: 'card',
+        content: [
             {
-                tag: string;
-                cls: string[];
+                tag: 'img',
+                cls: ['card-shirt'],
                 attrs: {
-                    src: string;
-                };
+                    src: './static/card_face_down.png',
+                },
             },
             {
-                tag: string;
-                cls: string[];
+                tag: 'div',
+                cls: ['card-face-hidden'],
                 content: [
                     {
-                        tag: string;
-                        cls: string;
-                        content: string;
+                        tag: 'div',
+                        cls: 'card-face-value',
+                        content: `${card.value}`,
                     },
                     {
-                        tag: string;
-                        cls: string;
-                        content: string;
+                        tag: 'div',
+                        cls: 'card-face-suit',
+                        content: `${card.suit}`,
                     },
                     {
-                        tag: string;
-                        cls: string;
-                        content: string;
+                        tag: 'p',
+                        cls: 'card-face-centered-suit',
+                        content: `${card.suit}`,
                     },
                     {
-                        tag: string;
-                        cls: string[];
-                        content: string;
+                        tag: 'div',
+                        cls: ['card-face-value', 'upside-down-value'],
+                        content: `${card.value}`,
                     },
                     {
-                        tag: string;
-                        cls: string[];
-                        content: string;
-                    }
-                ];
-            }
-        ];
-    }
+                        tag: 'div',
+                        cls: ['card-face-suit', 'upside-down-suit'],
+                        content: `${card.suit}`,
+                    },
+                ],
+            },
+        ],
+    };
+}
 
 export default function renderCards(level: string | null) {
     const suits = ['\u2660', '\u2663', '\u2666', '\u2665'];
@@ -69,55 +72,6 @@ export default function renderCards(level: string | null) {
             blockWithCards.classList.remove('block-with-cards-hidden');
             blockWithCards.classList.add('block-with-cards');
         }
-    }
-
-    
-
-    function creatingCard(card: Record<'suit' | 'value', string | number>) {
-        return {
-            tag: 'div',
-            cls: 'card',
-            content: [
-                {
-                    tag: 'img',
-                    cls: ['card-shirt'],
-                    attrs: {
-                        src: './static/card_face_down.png',
-                    },
-                },
-                {
-                    tag: 'div',
-                    cls: ['card-face-hidden'],
-                    content: [
-                        {
-                            tag: 'div',
-                            cls: 'card-face-value',
-                            content: `${card.value}`,
-                        },
-                        {
-                            tag: 'div',
-                            cls: 'card-face-suit',
-                            content: `${card.suit}`,
-                        },
-                        {
-                            tag: 'p',
-                            cls: 'card-face-centered-suit',
-                            content: `${card.suit}`,
-                        },
-                        {
-                            tag: 'div',
-                            cls: ['card-face-value', 'upside-down-value'],
-                            content: `${card.value}`,
-                        },
-                        {
-                            tag: 'div',
-                            cls: ['card-face-suit', 'upside-down-suit'],
-                            content: `${card.suit}`,
-                        },
-                    ],
-                },
-            ],
-        };
     }
 
     function getRandomSuit(arr: string[]): string[] {
@@ -148,7 +102,7 @@ export default function renderCards(level: string | null) {
                     newValues.push(arr[Math.floor(Math.random() * arr.length)]);
                 }
                 const set = new Set(newValues);
-                let finalArr2 = [...set];
+                const finalArr2 = [...set];
                 if (finalArr2.length === 4) {
                     finalArr2.pop();
                     return finalArr2;
@@ -186,15 +140,14 @@ export default function renderCards(level: string | null) {
             arr2: (string | number)[],
             object: Record<'suit' | 'value', string | number>[]
         ) {
-            for (let elem of arr1) {
-                for (let el of arr2) {
+            for (const elem of arr1) {
+                for (const el of arr2) {
                     object.push({
                         suit: elem,
                         value: el,
                     });
                 }
             }
-            console.log(object);
             return object;
         }
 
@@ -206,9 +159,7 @@ export default function renderCards(level: string | null) {
         listOfCards = listOfCards.sort(() => Math.random() - 0.5);
         if (blockWithCards !== null) {
             blockWithCards.appendChild(
-                templateEngine(
-                    listOfCards.map((el) => creatingCard(el))
-                )
+                templateEngine(listOfCards.map((el) => creatingCard(el)))
             );
         }
     }
@@ -223,7 +174,7 @@ export default function renderCards(level: string | null) {
             ) {
                 node.setAttribute('style', 'color: red');
             }
-            let child: Element | null = node.firstElementChild;
+            const child: Element | null = node.firstElementChild;
             changeColor(child);
 
             node = node.nextElementSibling;

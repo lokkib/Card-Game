@@ -51,7 +51,7 @@ export default function renderChosenCards() {
                 let elem: Element | null;
                 for (elem of allCards) {
                     if (elem !== null) {
-                        let child: Element | null = elem.lastElementChild;
+                        const child: Element | null = elem.lastElementChild;
                         if (child !== null) {
                             if (!child.classList.contains('clicked')) {
                                 contains = false;
