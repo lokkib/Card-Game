@@ -87,16 +87,15 @@ export default function renderCards(level: string | null) {
             return finalArr3;
         }
         if (finalArr3.length < 2) {
-            getRandomSuit(arr);
+           return  getRandomSuit(arr);
         } else {
             return finalArr3;
         }
-        return finalArr3;
     }
 
     function renderLevel() {
         const newValues: (string | number)[] = [];
-        function getRandomValue(arr: (string | number)[]) {
+        function getRandomValue(arr: (string | number)[]): (string | number)[] {
             if (level === '1') {
                 for (let i = 0; i < 4; i++) {
                     newValues.push(arr[Math.floor(Math.random() * arr.length)]);
@@ -108,7 +107,7 @@ export default function renderCards(level: string | null) {
                     return finalArr2;
                 }
                 if (finalArr2.length < 3) {
-                    getRandomValue(arr);
+                    return getRandomValue(arr);
                 } else {
                     return finalArr2;
                 }
