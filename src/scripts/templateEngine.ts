@@ -8,7 +8,7 @@ export default function templateEngine(block: unknown) {
         typeof block === 'number' ||
         block === true
     ) {
-        return document.createTextNode(block);
+        return document.createTextNode(String(block));
     }
 
     if (Array.isArray(block)) {
@@ -27,7 +27,7 @@ export default function templateEngine(block: unknown) {
     result.appendChild(templateEngine((block as blockObject).content));
 
     if ((block as blockObject).cls) {
-        const classes = [].concat((block as blockObject).cls);
+        const classes: string[] = ([] as string[]).concat((block as blockObject).cls);
         classes.forEach((cls) => {
             result.classList.add(cls);
         });
