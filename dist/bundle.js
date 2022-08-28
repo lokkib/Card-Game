@@ -103,12 +103,11 @@ function renderCards(level) {
             return finalArr3;
         }
         if (finalArr3.length < 2) {
-            getRandomSuit(arr);
+            return getRandomSuit(arr);
         }
         else {
             return finalArr3;
         }
-        return finalArr3;
     }
     function renderLevel() {
         const newValues = [];
@@ -124,7 +123,7 @@ function renderCards(level) {
                     return finalArr2;
                 }
                 if (finalArr2.length < 3) {
-                    getRandomValue(arr);
+                    return getRandomValue(arr);
                 }
                 else {
                     return finalArr2;

@@ -13,7 +13,8 @@
         "prepare": "husky install",
         "build": "webpack",
         "start": "webpack-dev-server --open",
-        "lint:ts": "tsc --noEmit"
+        "lint:ts": "tsc --noEmit",
+        "test-cypress": "npm run cypress open"
     },
     "repository": {
         "type": "git",
