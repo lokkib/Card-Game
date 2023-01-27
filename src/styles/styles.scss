@@ -63,6 +63,10 @@ body {
     cursor: pointer;
 }
 
+.clicked-button {
+    border: 1px solid red  !important;
+}
+
 .block-button-start {
     display: flex;
     justify-content: center;
