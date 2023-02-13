@@ -328,6 +328,7 @@ body {
 }
 
 .block-final-screen {
+    animation: 1s show ease;
     position: absolute;
     z-index: index 1;
     display: flex;
@@ -337,7 +338,6 @@ body {
     height: 459px;
     background: #c2f5ff;
     border-radius: 12px;
-    animation: 1s show ease;
 }
 
 .block-final-screen-hidden {
