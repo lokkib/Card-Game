@@ -11,14 +11,16 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #00008b;
- 
 }
 
-
 @keyframes show {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .block-heading-difficulty {
     display: flex;
@@ -31,6 +33,11 @@ body {
     width: 480px;
     height: 459px;
     animation: 3s show ease;
+
+    @media (min-width: 300px) and (max-width: 550px) {
+        width: 300px;
+        height: 290px;
+    }
 }
 
 .block-choose-difficulty-hidden {
@@ -48,6 +55,14 @@ body {
     text-align: center;
     margin-bottom: 48px;
     color: #004980;
+
+    @media (min-width: 300px) and (max-width: 550px) {
+        font-size: 25px;
+        line-height: 28px;
+        font-weight: 600;
+        margin-bottom: 38px;
+        margin-top: 22px;
+    }
 }
 
 .buttons-difficulty {
@@ -56,6 +71,10 @@ body {
     align-items: center;
     column-gap: 24px;
     padding-bottom: 67px;
+
+    @media (min-width: 300px) and (max-width: 550px) {
+        padding-bottom: 47px;
+    }
 }
 
 .buttons-difficulty button {
@@ -72,11 +91,25 @@ body {
     transition: 0.3s;
     cursor: pointer;
 
+    @media (min-width: 300px) and (max-width: 550px) {
+        width: 58px;
+        height: 58px;
+        line-height: 42px;
+        font-size: 44px;
+    }
+
     &:hover {
         width: 102px;
-    height: 102px;
+        height: 102px;
         transform: translateY(-5px);
         box-shadow: 7px 7px 5px darkred;
+
+        @media (min-width: 300px) and (max-width: 550px) {
+            width: 62px;
+            height: 62px;
+            transform: translateY(-5px);
+            box-shadow: 3px 3px 3px darkred;
+        }
     }
 
     &:active {
@@ -86,14 +119,12 @@ body {
 
 .clicked-button {
     transition: 0.3s;
-    border: 3px solid red  !important;
+    border: 3px solid red !important;
 }
 
 .block-button-start {
     display: flex;
     justify-content: center;
-
-   
 }
 
 .block-with-cards-hidden {
@@ -116,6 +147,10 @@ body {
     &:hover {
         transform: translateY(-5px);
         box-shadow: 7px 7px 5px darkgreen;
+    }
+
+    @media (min-width: 300px) and (max-width: 550px) {
+        width: 146px;
     }
 }
 
@@ -162,7 +197,12 @@ body {
     gap: 20px;
     flex-wrap: wrap;
     width: 670px;
-  
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        max-width: 350px;
+
+        gap: 10px;
+    }
 }
 
 .card {
@@ -173,15 +213,19 @@ body {
     border-radius: 4px;
     cursor: pointer;
     animation: 3s show ease;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        width: 75px;
+        height: 105px;
+    }
 }
 
 .card img {
-
+    width: 100%;
     &:hover {
         transform: translateY(-1px);
         box-shadow: 0px 7px 5px white;
     }
-    
 }
 
 .card-shirt-hidden {
@@ -196,6 +240,10 @@ body {
     animation: 3s show ease;
     height: 133px;
     display: block;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        height: 105px;
+    }
 }
 
 .card-face-value {
@@ -231,6 +279,11 @@ body {
     top: 103px;
     left: 70px;
     transform: rotateX(180deg);
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        left: 58px;
+        top: 72px;
+    }
 }
 
 .upside-down-suit {
@@ -238,6 +291,11 @@ body {
     top: 102px;
     left: 75px;
     transform: rotateX(180deg);
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        left: 62px;
+        top: 75px;
+    }
 }
 
 .game-timer-button {
@@ -246,6 +304,10 @@ body {
     margin-bottom: 35px;
     align-items: center;
     animation: 3s show ease;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        column-gap: 60px;
+    }
 }
 
 .game-timer-button-hidden {
@@ -270,6 +332,12 @@ body {
         transform: translateY(-2px);
         box-shadow: 7px 7px 5px darkgreen;
     }
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 14px;
+        width: 146px;
+        height: 40px;
+    }
 }
 
 .timer {
@@ -287,6 +355,11 @@ body {
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 20px;
+        line-height: 0;
+    }
 }
 
 .timer-minutes::after {
@@ -296,6 +369,11 @@ body {
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 20px;
+        line-height: 0;
+    }
 }
 
 .timer-seconds {
@@ -304,11 +382,21 @@ body {
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 20px;
+        line-height: 0;
+    }
 }
 
 .timer-min-sek {
     display: flex;
     column-gap: 57px;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
 }
 
 .timer-min {
@@ -337,6 +425,10 @@ body {
     height: 459px;
     background: #c2f5ff;
     border-radius: 12px;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        width: 330px;
+    }
 }
 
 .block-final-screen-hidden {
@@ -346,6 +438,10 @@ body {
 .block-final-screen__icon {
     padding-top: 30px;
     padding-bottom: 5px;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        width: 60px;
+    }
 }
 
 .block-final-screen__content {
@@ -362,6 +458,11 @@ body {
     font-size: 40px;
     line-height: 48px;
     color: #004980;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 30px;
+        line-height: 38px;
+    }
 }
 
 .block-final-screen__time {
@@ -371,6 +472,10 @@ body {
     font-size: 24px;
     line-height: 32px;
     color: #000000;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 20px;
+    }
 }
 
 .block-final-screen__time-content {
@@ -380,4 +485,8 @@ body {
     font-size: 64px;
     line-height: 72px;
     color: #000000;
+
+    @media (min-width: 300px) and (max-width: 780px) {
+        font-size: 44px;
+    }
 }

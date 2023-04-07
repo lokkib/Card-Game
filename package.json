@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "Homework - card game",
     "main": "index.js",
+    "homepage": "https://lokkib.github.io/Card-Game/",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write .",
@@ -14,7 +15,8 @@
         "build": "webpack",
         "start": "webpack-dev-server --open",
         "lint:ts": "tsc --noEmit",
-        "test-cypress": "npm run cypress open"
+        "test-cypress": "npm run cypress open",
+        "deploy": "gh-pages -d dist"
     },
     "repository": {
         "type": "git",
@@ -25,7 +27,6 @@
     "bugs": {
         "url": "https://github.com/lokkib/Game/issues"
     },
-    "homepage": "https://github.com/lokkib/Game#readme",
     "devDependencies": {
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.1",
@@ -52,6 +53,7 @@
         "webpack-dev-server": "^4.10.0"
     },
     "dependencies": {
-        "favicons-webpack-plugin": "^6.0.0"
+        "favicons-webpack-plugin": "^6.0.0",
+        "gh-pages": "^5.0.0"
     }
 }
